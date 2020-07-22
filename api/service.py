@@ -111,7 +111,7 @@ class To_Do_Tea:
         return res
 
 
-obj = To_Do_Tea("red", "10", "90", "11")
+# obj = To_Do_Tea("red", "10", "90", "11")
 #
 
 #obj = To_Do_Tea(input("What type of tea do you want?"), input("What amount of water for tea do you like to?"), input("What water temperature must be yours tea?"), input("How much spoons of sugar woul you like to?"))
@@ -120,5 +120,3 @@ obj = To_Do_Tea("red", "10", "90", "11")
 
 #y = obj.conclusion()
 #print(y)
-x = obj.check()
-print(x)

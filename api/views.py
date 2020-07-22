@@ -14,7 +14,7 @@ class HowToMakeTea(APIView):
             #print(serializer.data['type'], serializer.data['water'], serializer.data['temp'], serializer.data['sugar'])
             #print("errors", serializer.errors)
             sugar = serializer.data.get('sugar')
-            if sugar and sugar>0:
+            if sugar and sugar > 0:
                 tea=To_Do_Tea(serializer.data['type'], serializer.data['water'], serializer.data['temp'], serializer.data['sugar'])
             else:
                 tea=To_Do_Tea(serializer.data['type'], serializer.data['water'], serializer.data['temp'], 0)
