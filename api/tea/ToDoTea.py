@@ -1,5 +1,4 @@
 class To_Do_Tea:
-
     type_of_tea = str('')
     amount_of_water = int(0)
     temperature = int(0)
@@ -10,7 +9,6 @@ class To_Do_Tea:
     '''parametrized constructor'''
 
     '''to check if my list contains False'''
-
 
     def __init__(self, type, water, temp, sugar):
         self.type_of_tea = type
@@ -23,7 +21,6 @@ class To_Do_Tea:
         print("For that you need " + self.amount_of_water + ", ")
         print("Your tea`s temperature must be " + self.temperature + ", ")
         print("You like to add " + self.amount_of_sugar + " spoons of sugar.")
-
 
     '''conditions for types of tea'''
 
@@ -41,7 +38,6 @@ class To_Do_Tea:
             }
             return obj
 
-
     def isTemperature(self, temp):
         if int(temp) >= self.boiling_temp:
             obj = {
@@ -55,7 +51,6 @@ class To_Do_Tea:
                 'message': "This temperature isn`t enough for preparing"
             }
             return obj
-
 
     '''conditions for amount of sugar and water'''
 
@@ -75,34 +70,33 @@ class To_Do_Tea:
             }
             return obj
 
-
-
     '''Created 2 lists for errors and summary valuables which are inputed'''
     '''if our valuable has Error => put it in errors list'''
 
+    @property
     def check(self):
         list = []
         errors = []
         list.append(self.isTeaType(self.type_of_tea))
         list.append(self.isTemperature(self.temperature))
         list.append(self.isWaterSugar(self.amount_of_sugar, self.amount_of_water))
-        #print(list)
+        # print(list)
         for numb in list:
             # print(numb['error'] == True)
-             if numb['error'] == True:
-                 errors.append(numb)
+            if numb['error'] == True:
+                errors.append(numb)
         return errors
-
-
 
     '''check if check func return True or False.'''
     '''If True => return True and print'''
+
     def conclusion(self):
-        isErrors = self.check()
+        isErrors = self.check
         print("Errors", len(isErrors))
         if len(isErrors) == 0:
             res = {
-                'message': "Your order: you want {0} tea For that you want {1} ml of water. Also, your waters temperature must be {2} degreeses. Beside that you would like to add {3}.".format(self.type_of_tea, self.amount_of_water, self.temperature, self.amount_of_sugar) + "to yours tea."
+                'message': "Your order: you want {0} tea For that you want {1} ml of water. Also, your waters temperature must be {2} degreeses. Beside that you would like to add {3}.".format(
+                    self.type_of_tea, self.amount_of_water, self.temperature, self.amount_of_sugar) + "to yours tea."
             }
         else:
             res = {
@@ -114,9 +108,9 @@ class To_Do_Tea:
 # obj = To_Do_Tea("red", "10", "90", "11")
 #
 
-#obj = To_Do_Tea(input("What type of tea do you want?"), input("What amount of water for tea do you like to?"), input("What water temperature must be yours tea?"), input("How much spoons of sugar woul you like to?"))
+# obj = To_Do_Tea(input("What type of tea do you want?"), input("What amount of water for tea do you like to?"), input("What water temperature must be yours tea?"), input("How much spoons of sugar woul you like to?"))
 
 '''calling func'''
 
-#y = obj.conclusion()
-#print(y)
+# y = obj.conclusion()
+# print(y)

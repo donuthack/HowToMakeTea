@@ -1,24 +1,42 @@
+from enum import IntEnum
+
 from howtomaketea.api.tea.hotwater import HotWater
 
-from enum import IntEnum
+'''Class which returns HotWater, teatype and array of addictions'''
 
 
 class Tea:
-    HotWater = int(0)
+    hotWater = {}
     teatype = int(0)
     add = [0]
+    list = []
 
     def __init__(self, hw, tt, add):
-        self.HotWater = hw
+        self.hotWater = hw
         self.teatype = tt
         self.add = add
 
+    def AskWhat(self):
+        input("How much tea in g do you want?")
+        print(self.teatype)
+        input("How much adds do you want?")
+        print(self.add)
+        input("How much water do you want in ml?")
+        print(self.hotWater)
 
-    def getCapacity(self):
-        return TypeTea(), Adds()
+    def calculateAmount(self):
+        return self.teatype+self.add+self.hotWater
+
+    def capacity(self):
+        # print(11)
+        # print(self.hotWater.getHotWater())
+        return self.calculateAmount()
 
 
-'''types of tea'''
+obj = Tea(12, 6, 3)
+print(obj.capacity())
+
+'''array with types of tea'''
 
 
 class TypeTea(IntEnum):
@@ -34,13 +52,16 @@ class TypeTea(IntEnum):
     flower_tea = 10
     leaf_tea = 11
 
+    @property
+    def __str__(self):
+        return str(self.value)
 
-print(int(TypeTea.white_tea))
 
+'''check if value exist in array(True of False)'''
 # enum_list = list(map(int, TypeTea))
 # print(enum_list)
 
-'''additions to tea'''
+'''array with additions to tea'''
 
 
 class Adds(IntEnum):
@@ -58,11 +79,6 @@ class Adds(IntEnum):
     ice_cream = 11
     sorbet = 12
 
-
-print(int(Adds.lemon_herbs))
-
-
-# t = TypeTea()
-# a = Adds()
-#
-# obj = Tea()
+    @property
+    def __str__(self):
+        return str(self.value)

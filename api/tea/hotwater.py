@@ -39,4 +39,4 @@ class HotWater:
 
 # obj = HotWater(135, 989)
 #
-# print(obj.setHotWater())
+# print(obj.getHotWater())
