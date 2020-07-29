@@ -1,5 +1,5 @@
-from howtomaketea.api.tea.hotwater import HotWater
-from howtomaketea.api.tea.Tea import *
+from .hotwater import HotWater
+from .Tea import Tea, Adds, TypeTea
 from enum import IntEnum
 
 
@@ -19,31 +19,38 @@ class Tea_Machine:
     def getTypeTea(self):
         try:
             if self.__typeoftea in TypeTea[self.__typeoftea].name:
-                return self.__typeoftea
+                return TypeTea[self.__typeoftea].value
         except:
-            self.__typeoftea = TypeTea.black_tea.name
+            self.__typeoftea = [TypeTea.black_tea.value]
             return self.__typeoftea
 
     def getAddition(self):
+        self.__adds = []
         try:
             if (len(self.__addWeRecive)) > 0:
                 for element in self.__addWeRecive:
                     if element in Adds[element].name:
-                        self.__adds.append(element)
+                        self.__adds.append(Adds[element].value)
             else:
-                self.__adds = [Adds.nothing]
+                self.__adds = [Adds.nothing.value]
         except:
-            self.__adds = [Adds.nothing]
+            self.__adds = [Adds.nothing.value]
         return self.__adds
 
     def boilWater(self):
         water = HotWater(self.__water, self.__temp)
-        water.setHotWater()
-        return water
+        hotwater = water.getHotWater()
+        return hotwater
 
-    def prepareTea(self):
-        s = Tea(self.boilWater(), 'white_tea', [])
-        print(s.capacity())
+    def returnIngr(self):
+        ingradients = Tea(self.boilWater(), self.getTypeTea(), self.getAddition())
+        amount = ingradients.calculateAmount()
+        return amount
+
+    # def prepareTea(self):
+    #
+    #     print(s.calculateAmount())
 
 
-# Tea_Machine(524, 100, "white_tea", ["honey"]).prepareTea()
+# x = Tea_Machine(890, 400, "green_tea", ["honey"]).returnIngr()
+# print("Sum", x)

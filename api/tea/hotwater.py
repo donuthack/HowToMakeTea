@@ -27,16 +27,19 @@ class HotWater:
             }
             return self.result
 
+
     def getHotWater(self):
-        if len(self.result) == 0:
-            return {
+        self.result = self.setHotWater()
+        if self.result['error'] != True:
+            return self.result
+        else:
+            self.result = {
                 "error": True,
                 "message": "You must boil yours water"
             }
-        else:
             return self.result
 
 
-# obj = HotWater(135, 989)
-#
-# print(obj.getHotWater())
+# obj = HotWater(812, 764)
+# print(531, obj.setHotWater())
+# print(631, obj.getHotWater())
