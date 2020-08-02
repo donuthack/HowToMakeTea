@@ -19,7 +19,7 @@ class Tea_Machine:
     def getTypeTea(self):
         try:
             if self.__typeoftea in TypeTea[self.__typeoftea].name:
-                return TypeTea[self.__typeoftea].value
+                return TypeTea[self.__typeoftea].name
         except:
             self.__typeoftea = [TypeTea.black_tea.value]
             return self.__typeoftea
@@ -30,11 +30,11 @@ class Tea_Machine:
             if (len(self.__addWeRecive)) > 0:
                 for element in self.__addWeRecive:
                     if element in Adds[element].name:
-                        self.__adds.append(Adds[element].value)
+                        self.__adds.append(Adds[element].name)
             else:
-                self.__adds = [Adds.nothing.value]
+                self.__adds = [Adds.nothing.name]
         except:
-            self.__adds = [Adds.nothing.value]
+            self.__adds = [Adds.nothing.name]
         return self.__adds
 
     def boilWater(self):
@@ -42,14 +42,49 @@ class Tea_Machine:
         hotwater = water.getHotWater()
         return hotwater
 
+    @property
     def returnIngr(self):
         ingradients = Tea(self.boilWater(), self.getTypeTea(), self.getAddition())
+        additions = self.getAddition()
         amount = ingradients.calculateAmount()
-        return amount
+        string = ' '
+        if len(additions) > 1:
+            for element in additions:
+                if element == additions[-1]:
+                    if len(additions) >= 3:
+                        string += "and " + element
+                    else:
+                        string += ", " + element
+                else:
+                    if element == additions[-2]:
+                        string += element + ' '
+                    else:
+                        string += element + ', '
+        else:
+            string = self.__adds[0] + " "
 
-    # def prepareTea(self):
-    #
-    #     print(s.calculateAmount())
+        # if len(additions)>1:
+        #     for element in additions:
+        #         if element == additions[-1] and len(additions) >= 3:
+        #             string += "and " + element
+        #         else:
+        #             string += "and " + element
+        # if not len(additions) > 1:
+        #     string = self.__adds[0] + " "
+        #     for element in additions:
+        #         if not element == additions[-1]:
+        #             string += element + ", "
+        #         if not len(additions) >= 3:
+        #             string += "and" + element
+        #         else:
+        #             string += " " + element
+        # else:
+        #     string = self.__adds[0] + " "
+        if amount != 0:
+            res = {
+                "mes:" "You want: {0} type, addition you choose: {1}. So, yours amount of tea is {2}".format(self.getTypeTea(), string,  amount)
+            }
+        return res
 
 
 # x = Tea_Machine(890, 400, "green_tea", ["honey"]).returnIngr()

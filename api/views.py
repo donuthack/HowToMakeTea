@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .tea.TeaMachine import Tea_Machine
 # from howtomaketea.api.tea.ToDoTea import To_Do_Tea
-# from .serializers import TeaComponents
+from .serializers import PrepareTea
 
 
 # class HowToMakeTea(APIView):
@@ -26,5 +26,26 @@ from .tea.TeaMachine import Tea_Machine
 
 class TeaMachine(APIView):
     def post(self, request):
-        x = Tea_Machine(temp=request.data['temp'], water=request.data['water'], addWeRecive=request.data['adds'], teaType=request.data['typeoftea'] ).returnIngr()
-        return Response(x)
+        # try:
+        #     serializer = PrepareTea(data=request.data)
+        #     serializer.is_valid()
+        #     print(serializer.is_valid())
+        #     x = Tea_Machine(serializer.data['temp'], serializer.data['water'], serializer.data['adds'], serializer.data['typeoftea'])
+        #     res = x.returnIngr()
+        # except KeyError:
+        #     res = {
+        #         "error": True,
+        #         "message": "Please enter all info"
+        #     }
+        # return Response(res)
+        serializer = PrepareTea(data=request.data)
+        serializer.is_valid()
+        print(serializer.is_valid())
+        print(serializer.errors)
+        temp = request.data['temp']
+        water = request.data['water']
+        addWeRecive = request.data['adds']
+        teaType = request.data['typeoftea']
+        prepare = Tea_Machine(water, temp, teaType, addWeRecive)
+        res = prepare.returnIngr
+        return Response(res)
