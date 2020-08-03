@@ -21,7 +21,7 @@ class Tea_Machine:
             if self.__typeoftea in TypeTea[self.__typeoftea].name:
                 return TypeTea[self.__typeoftea].name
         except:
-            self.__typeoftea = [TypeTea.black_tea.value]
+            self.__typeoftea = TypeTea['black_tea'].name
             return self.__typeoftea
 
     def getAddition(self):
@@ -81,9 +81,7 @@ class Tea_Machine:
         # else:
         #     string = self.__adds[0] + " "
         if amount != 0:
-            res = {
-                "mes:" "You want: {0} type, addition you choose: {1}. So, yours amount of tea is {2}".format(self.getTypeTea(), string,  amount)
-            }
+            res =  "You want: {0} type, addition you choose: {1}. So, yours amount of tea is {2}".format(self.getTypeTea(), string,  amount)
         return res
 
 

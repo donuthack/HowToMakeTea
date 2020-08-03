@@ -38,14 +38,37 @@ class TeaMachine(APIView):
         #         "message": "Please enter all info"
         #     }
         # return Response(res)
-        serializer = PrepareTea(data=request.data)
-        serializer.is_valid()
-        print(serializer.is_valid())
-        print(serializer.errors)
-        temp = request.data['temp']
-        water = request.data['water']
-        addWeRecive = request.data['adds']
-        teaType = request.data['typeoftea']
-        prepare = Tea_Machine(water, temp, teaType, addWeRecive)
-        res = prepare.returnIngr
-        return Response(res)
+
+
+        # serializer = PrepareTea(data=request.data)
+        # serializer.is_valid()
+        # print(serializer.is_valid())
+        # print(serializer.errors)
+        # temp = request.data['temp']
+        # water = request.data['water']
+        # addWeRecive = request.data['adds']
+        # teaType = request.data['typeoftea']
+        # prepare = Tea_Machine(water, temp, teaType, addWeRecive)
+        # res = prepare.returnIngr
+        # return Response(res)
+
+        machine = PrepareTea(data=request.data)
+        if machine.is_valid():
+            temp = machine.data['temp']
+            print(567, machine.data)
+            water = machine.data['water']
+            addWeRecive = machine.data['adds']
+            teaType = machine.data['typeoftea']
+            tea = Tea_Machine(water, temp, teaType, addWeRecive)
+            res = tea.returnIngr
+            result = {
+                "errors": False,
+                "message": res
+            }
+            # machine.save()
+        else:
+            result = {
+                "errors": True,
+                "message": machine.errors
+            }
+        return Response(result)

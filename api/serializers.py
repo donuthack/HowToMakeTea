@@ -8,7 +8,7 @@ from rest_framework import serializers
 
 
 class PrepareTea(serializers.Serializer):
-    temp = serializers.IntegerField()
+    temp = serializers.IntegerField(min_value=80, max_value=120)
     adds = serializers.ListField(
         child=serializers.CharField(max_length=255)
     )
