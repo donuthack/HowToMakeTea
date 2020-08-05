@@ -3,8 +3,10 @@ from .tea.Tea import Adds
 
 
 class Add(models.Model):
-    mame = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
 
 class TeaType(models.Model):
     BLACK_TEA = "BL"
@@ -32,17 +34,21 @@ class TeaType(models.Model):
         (LEAF_TEA, "leaf"),
     ]
 
-    # additions = models.CharField()
-    #
+    # additions = models.CharField(max_length=255)
+
+    # def __str__(self):
+    #     return self.additions
+
     # def is_upperclass(self):
     #     return self.additions in {self.FLOWER_TEA, self.WHITE_TEA}
 
 
 class MakeTea(models.Model):
-    water = models.IntegerField("Amount of water") #TODO positive integer field
-    temp = models.IntegerField("Temperature") #TODO positive integer field
-    typeoftea = models.CharField("Preference type of tea", max_length=255,  choices=TeaType.TYPE_OF_TEA, default=TeaType.BLACK_TEA,)
-    adds = models.ManyToManyField(Add, related_name='adds_tea') #TODO __str__  повернення імя
+    water = models.PositiveIntegerField("Amount of water")
+    temp = models.PositiveIntegerField("Temperature")
+    typeoftea = models.CharField("Preference type of tea", max_length=255, choices=TeaType.TYPE_OF_TEA, default=TeaType.BLACK_TEA,)
+    adds = models.ManyToManyField(Add, related_name='adds_tea')
 
     def __str__(self):
         return self.typeoftea
+

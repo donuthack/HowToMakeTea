@@ -1,22 +1,15 @@
 from rest_framework import serializers
-from .models import MakeTea
-
-# class TeaComponents(serializers.Serializer):
-#     type = serializers.CharField(max_length=40)
-#     water = serializers.IntegerField()
-#     temp = serializers.IntegerField()
-#     sugar = serializers.IntegerField()
+from .models import MakeTea, Add
+from HowToMakeTea.api.tea.TeaMachine import Tea_Machine
 
 
 class PrepareTea(serializers.ModelSerializer):
-    temp = serializers.IntegerField(min_value=80, max_value=120)
-    adds = serializers.ListField(
-        child=serializers.CharField(max_length=255)
-    )
-    water = serializers.IntegerField()
-    typeoftea = serializers.CharField()
-
-
     class Meta:
         model = MakeTea
-        fields = ['temp', 'adds', 'water', 'type_of_tea']
+        fields = "__all__"
+
+
+class PrepareAdd(serializers.ModelSerializer):
+    class Meta:
+        model = Add
+        fields = "__all__"

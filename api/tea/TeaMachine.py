@@ -1,7 +1,8 @@
 from .hotwater import HotWater
 from .Tea import Tea, Adds, TypeTea
+from api.models import Add
 from enum import IntEnum
-
+import psycopg2
 
 
 class Tea_Machine:
@@ -25,13 +26,14 @@ class Tea_Machine:
             self.__typeoftea = TypeTea['black_tea'].name
             return self.__typeoftea
 
-    def getAddition(self):
+    def getAddition(self): #TODO Треба браті з табліци Add і шукати відповідності по ID якщо є то добавляті name до масіву __adds
         self.__adds = []
+        print(Add.objects.all())
         try:
             if (len(self.__addWeRecive)) > 0:
                 for element in self.__addWeRecive:
-                    if element in Adds[element].name:
-                        self.__adds.append(Adds[element].name)
+                    # if element in tea.
+                        self.__adds.append(Add.pk)
             else:
                 self.__adds = [Adds.nothing.name]
         except:
@@ -63,24 +65,6 @@ class Tea_Machine:
                         string += element + ', '
         else:
             string = self.__adds[0] + " "
-
-        # if len(additions)>1:
-        #     for element in additions:
-        #         if element == additions[-1] and len(additions) >= 3:
-        #             string += "and " + element
-        #         else:
-        #             string += "and " + element
-        # if not len(additions) > 1:
-        #     string = self.__adds[0] + " "
-        #     for element in additions:
-        #         if not element == additions[-1]:
-        #             string += element + ", "
-        #         if not len(additions) >= 3:
-        #             string += "and" + element
-        #         else:
-        #             string += " " + element
-        # else:
-        #     string = self.__adds[0] + " "
         if amount != 0:
             res =  "You want: {0} type, addition you choose: {1}. So, yours amount of tea is {2}".format(self.getTypeTea(), string,  amount)
         return res
