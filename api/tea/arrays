@@ -67,8 +67,68 @@ def everyTwentieElement(list):
 
 print(everyTwentieElement(list))
 
+'''simple var to return every 3rd element from list(arr) to third(arr)'''
 
-'''return every 3rd element from array'''
+
+def everyThirdElementSimpleVariant(list):
+    third = list[::3]
+
+    res = {
+        "result3": third,
+    }
+    return res
 
 
-def everyThirdElement
+print(everyThirdElementSimpleVariant(list))
+
+'''simple var to return every 5th element from list(arr) to fifth(arr)'''
+
+
+def everyFifthElementSimoleVariant(list):
+    fifth = list[::5]
+
+    res = {
+        "result5": fifth,
+    }
+    return res
+
+
+print(everyFifthElementSimoleVariant(list))
+
+'''simple var to return every K element which user input'''
+
+
+# def everyKElementSimpleVariant(list):
+#     i = int(input("What element do you want to return?: "))
+#
+#     k = list[::i]
+#
+#     res = {
+#         "resultk": k,
+#     }
+#     return res
+#
+#
+# print(everyKElementSimpleVariant(list))
+
+
+def KElement1(list,l):
+    # a = input("What element do you want to take?")
+    q = 0
+    k = []
+    for i in list:
+        if q >= l-1:
+            k.append(i)
+            q = 0
+        else:
+            q += 1
+    return k
+
+
+h=int(input("What element do you want to return?: "))
+print(1,KElement1(list,h))
+print(1,KElement1(list,2))
+
+
+
+
