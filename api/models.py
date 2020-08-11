@@ -4,9 +4,11 @@ from .tea.Tea import Adds
 
 class Add(models.Model):
     name = models.CharField(max_length=255)
+    amount = models.PositiveIntegerField("Amount")
 
     def __str__(self):
         return self.name
+
 
 class TeaType(models.Model):
     BLACK_TEA = "BL"
@@ -20,7 +22,7 @@ class TeaType(models.Model):
     FRUIT_TEA = "FT"
     FLOWER_TEA = "FL"
     LEAF_TEA = "LF"
-    TYPE_OF_TEA=[
+    TYPE_OF_TEA = [
         (BLACK_TEA, "black"),
         (GREEN_TEA, "green"),
         (OOLONG_TEA, "oolong"),
@@ -46,9 +48,11 @@ class TeaType(models.Model):
 class MakeTea(models.Model):
     water = models.PositiveIntegerField("Amount of water")
     temp = models.PositiveIntegerField("Temperature")
-    typeoftea = models.CharField("Preference type of tea", max_length=255, choices=TeaType.TYPE_OF_TEA, default=TeaType.BLACK_TEA,)
+    typeoftea = models.CharField("Preference type of tea", max_length=255, choices=TeaType.TYPE_OF_TEA,
+                                 default=TeaType.BLACK_TEA, )
     adds = models.ManyToManyField(Add, related_name='adds_tea')
 
     def __str__(self):
         return self.typeoftea
+
 

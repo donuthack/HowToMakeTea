@@ -1,0 +1,74 @@
+import random
+
+'''create arr of rand numb and rand len'''
+list = []
+for i in range(random.randint(0, 100)):
+    list.append(random.randint(0, 100))
+print(list)
+
+'''create 2 arrays, where 1st arr = non count numbers, 2nd arr = count array'''
+
+count = []
+uncount = []
+
+
+def divideArr(list):
+    for numb in list:
+        if numb % 2 != 0:
+            uncount.append(numb)
+        else:
+            count.append(numb)
+    res = {
+        "count": count,
+        "uncount": uncount,
+    }
+    return res
+
+
+print(divideArr(list))
+
+'''Sum all numbers by module 2 without sum() func'''
+
+
+def SumByModTwo(count):
+    summary = 0
+    for value in count:
+        summary += value
+    return summary
+
+
+print(SumByModTwo(count))
+
+'''reverse list without reverse() func'''
+
+
+def reverseList(list):
+    return list[::-1]
+
+
+print(reverseList(list))
+
+'''Array(element), where you write a sum of elements from list, which must be 20.'''
+'''if sum = 20 => break '''
+
+
+def everyTwentieElement(list):
+    s = 0
+    element = []
+    for y in list:
+        if s + y <= 20:
+            s += y
+            element.append(y)
+        else:
+            if s >= 20:
+                break
+    return element
+
+
+print(everyTwentieElement(list))
+
+
+'''return every 3rd element from array'''
+
+
+def everyThirdElement

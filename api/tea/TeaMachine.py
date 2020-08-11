@@ -2,7 +2,7 @@ from .hotwater import HotWater
 from .Tea import Tea, Adds, TypeTea
 from api.models import Add
 from enum import IntEnum
-import psycopg2
+# from HowToMakeTea.api.serializers import serializers
 
 
 class Tea_Machine:
@@ -28,16 +28,17 @@ class Tea_Machine:
 
     def getAddition(self): #TODO Треба браті з табліци Add і шукати відповідності по ID якщо є то добавляті name до масіву __adds
         self.__adds = []
-        print(Add.objects.all())
-        try:
-            if (len(self.__addWeRecive)) > 0:
-                for element in self.__addWeRecive:
-                    # if element in tea.
-                        self.__adds.append(Add.pk)
-            else:
-                self.__adds = [Adds.nothing.name]
-        except:
+        # try:
+        if (len(self.__addWeRecive)) > 0:
+            for element in self.__addWeRecive:
+                # print(12, Add.objects.filter(pk=15).exists())
+                if Add.objects.filter(pk=element).exists():
+                    self.__adds.append(self.__addWeRecive)
+                    print(123, self.__adds)
+        else:
             self.__adds = [Adds.nothing.name]
+        # except:
+        #     self.__adds = [Adds.nothing.name]
         return self.__adds
 
     def boilWater(self):

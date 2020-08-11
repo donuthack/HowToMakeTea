@@ -15,6 +15,7 @@ class TeaMachine(APIView):
                 temp = machine.data['temp']
                 water = machine.data['water']
                 addWeRecive = machine.data['adds']
+                print(machine.data['adds'])
                 teaType = machine.data['typeoftea']
                 tea = Tea_Machine(water, temp, teaType, addWeRecive)
                 res = tea.returnIngr
